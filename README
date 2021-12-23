@@ -1,0 +1,34 @@
+####################################
+# Author: Emil Polakiewicz
+# Date: December 2021
+# Purpose: README File for ARCS Process Experiment
+####################################
+
+Files:
+    - filter_process_file.py: Takes in raw proc.txt file from Kent 2016 dataset and filters it into a reasonable size
+    - proc_based_user_sessions.py: Takes in filtered process data, and processes the data into process features and
+                                   session features (not one-hot encoded)
+    - dataset_stats.py: Calculates basic stats about the data using some output files from proc_based_user_sessions.py
+    - run_all_features.py: One-hot encodes processed data, and runs linear regression and random forest classifiers
+                           using process and session features
+    - run_process_features.py: One-hot encodes processed data, and runs linear regression and random forest classifiers
+                           using process features
+    - run_process_name_features.py: One-hot encodes processed data, and runs linear regression and random forest classifiers
+                           using only process name as a feature
+    - final_process_analysis.csv: List of 300 most popular process names in dataset for one-hot encoding
+    - acc_comp_graphs.py: Creates graphs for visualizing the results of running the classifiers on the processed data
+
+
+How to Run:
+    1. Run filter_process_file.py to obtain a reasonable sized proc file (note proc.txt not included in repository
+       because it is too large)
+    2. Run proc_based_user_sessions.py on the output file from filter_process_file.py to get processed data using
+       create_proc_dataset.slrm if running on HPC cluster
+    3. To get extra statistics from the dataset, run dataset_stats.py on the output files from proc_based_user_sessions.py
+       specified
+    4. Run run_all_features.py, run_process_features.py, run_process_name_features.py on the dataset given by
+       step 2 using proc_and_session.slrm, proc_only.slrm, and proc_name.slrm respectively if running on HPC cluster
+    5. To obtain graphs, run acc_comp_graphs.py on outputs from the classifiers
+
+
+
